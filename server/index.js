@@ -3,8 +3,10 @@
 //modulo 'express': crear servidor
 //modulo 'nodemon': refresca automaticamente el servidor al guardar algun archivo 
 //modulo 'morgan': ver por consola lo que el usuario esta pidiendo
+//modulo 'cors'. se conecta con el servidor de angular '4200'
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const app = express();
 const { mongoose } = require('./database'); //{} destructuring
 
@@ -18,6 +20,7 @@ app.set('port', process.env.PORT || 3000);
 //MIDDLEWARES: proceso de datos: conversion de datos para que se entiendan
 app.use(morgan('dev'));   //al ejecutar 'dev', hace uso de 'morgan'
 app.use(express.json());  //metodo que convierte los datos en json
+app.use(cors({origin: "http://localhost:4200"})); //se comunican los dos puertosmondog
 
 //----------------------------------------------------------------------------
 //ROUTES
